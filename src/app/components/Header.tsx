@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './Header.module.css';
-import logo from '../../../public/logo Mackee.png';
+import logo from '../../../public/logo Mackee.svg';
 
 const Header = () => {
   return (
