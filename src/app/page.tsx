@@ -10,7 +10,6 @@ const Result = dynamic(() => import("./components/Result"));
 export default function HomePage() {
   const [step, setStep] = useState(1);
   const [resultOne, setResultOne] = useState<number | null>(null);
-  const [resultTwo, setResultTwo] = useState<number | null>(null);
   const [fatorSeguranca, setFatorSeguranca] = useState<number | null>(null);
   const [resistencia, setResistencia] = useState<number | null>(null);
 
@@ -41,7 +40,6 @@ export default function HomePage() {
             <FormStepTwo onCalculate={(fator, resistencia) => {
               setFatorSeguranca(fator);
               setResistencia(resistencia);
-              setResultTwo(resistencia);
               setStep(3);
             }} />
           </div>

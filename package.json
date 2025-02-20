@@ -2,15 +2,19 @@
   "name": "mackee",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/jucalast/mackee.git",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "gh-pages -d out",
+    "export": "next export"
   },
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "mackee": "file:",
-    "next": "15.1.7",
+    "next": "^15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

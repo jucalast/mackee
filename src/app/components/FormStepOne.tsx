@@ -1,7 +1,7 @@
 // components/FormStepOne.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface Props {
   onCalculate: (result: number) => void;
@@ -14,13 +14,8 @@ export default function FormStepOne({ onCalculate }: Props) {
   const [altura, setAltura] = useState("");
   const [coluna, setColuna] = useState("");
   const [espessura, setEspessura] = useState("");
-  const [resultado, setResultado] = useState<number | null>(null);
 
-  useEffect(() => {
-    atualizarColunaEspessura();
-  }, [material]);
-
-  const atualizarColunaEspessura = () => {
+  const atualizarColunaEspessura = useCallback(() => {
     let opcoes = [];
     let espessuras = [];
 
@@ -42,7 +37,11 @@ export default function FormStepOne({ onCalculate }: Props) {
 
     setColuna(opcoes[0].toString());
     setEspessura(espessuras[0].toString());
-  };
+  }, [material]);
+
+  useEffect(() => {
+    atualizarColunaEspessura();
+  }, [material, atualizarColunaEspessura]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,12 +77,11 @@ export default function FormStepOne({ onCalculate }: Props) {
       return;
     }
 
-    let p_mm = 2 * ((C * 2 + L * 2 + QC) + (L / 2 + A + L / 2 + QL));
-    let p_cm = p_mm / 10;
+    const p_mm = 2 * ((C * 2 + L * 2 + QC) + (L / 2 + A + L / 2 + QL));
+    const p_cm = p_mm / 10;
     const cargaColapso = k * c * Math.sqrt(e * p_cm);
 
     const resultadoFinal = cargaColapso; // Mantendo em kgf
-    setResultado(resultadoFinal);
     onCalculate(resultadoFinal);
   };
 
