@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Gatwick';
+    src: url('../fonts/PPGatwick-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+h1, h2, h3 {
+    font-family: 'Gatwick', sans-serif;
+}
+
+label, input, select {
+    font-family: 'Poppins', sans-serif;
+}
