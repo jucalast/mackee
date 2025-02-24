@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 const FormStepOne = dynamic(() => import("./components/FormStepOne"));
 const FormStepTwo = dynamic(() => import("./components/FormStepTwo"));
 const Result = dynamic(() => import("./components/Result"));
+const Conclusion = dynamic(() => import("./components/Conclusion"));
 
 export default function HomePage() {
   const [step, setStep] = useState(1);
@@ -25,46 +26,45 @@ export default function HomePage() {
   const resistenciaColor = resultOne !== null && resistencia !== null ? getColor(resistencia, resultOne) : { color: "", spanColor: "" };
 
   return (
-    <div className="main-container">
-      <section className="form-section">
-        {/* Formulários */}
-        <div className={`form-step ${step >= 2 ? 'inactive' : ''}`}>
-          <FormStepOne onCalculate={(result) => {
-            setResultOne(result);
-            setStep(2);
-          }} />
-        </div>
-
-        {step >= 2 && (
-          <div className="form-step active" style={{ position: 'absolute', left: 0, right: 0 }}>
-            <FormStepTwo onCalculate={(fator, resistencia) => {
-              setFatorSeguranca(fator);
-              setResistencia(resistencia);
-              setStep(3);
+    <>
+      <div className="main-container">
+        <section className="form-section">
+          {/* Formulários */}
+          <div className={`form-step ${step >= 2 ? 'inactive' : ''}`}>
+            <FormStepOne onCalculate={(result) => {
+              setResultOne(result);
+              setStep(2);
             }} />
           </div>
-        )}
-      </section>
 
-      {/* Resultados e Comparação Final */}
-      <div className="result-container">
-        {resultOne !== null && step < 3 && <Result title="Resultado" value={resultOne} isSummary={step === 2}  />}
+          {step >= 2 && (
+            <div className="form-step active" style={{ position: 'absolute', left: 0, right: 0 }}>
+              <FormStepTwo onCalculate={(fator, resistencia) => {
+                setFatorSeguranca(fator);
+                setResistencia(resistencia);
+                setStep(3);
+              }} />
+            </div>
+          )}
+        </section>
 
-        {step === 3 && resultOne !== null && resistencia !== null && (
-          <div className="comparison">
-            <h2 style={{ fontSize: "2.5rem" }}>Compressão atual</h2>
-            <h2 style={{ color: resultOneColor.color, fontSize: "5rem", margin: "10px"}}>{Math.round(resultOne)} <span style={{ color: resultOneColor.spanColor }}>kgf</span></h2>
-            <h2 style={{ fontSize: "2.5rem" }}>Mínimo de compressão </h2>
-            <h2 style={{ color: resistenciaColor.color, fontSize: "5rem",  margin: "10px" }}>{Math.round(resistencia)} <span style={{ color: resistenciaColor.spanColor }}>kgf</span></h2>
-          </div>
-        )}
+        {/* Resultados e Comparação Final */}
+        <div className="result-container">
+          {resultOne !== null && step < 3 && <Result title="Resultado" value={resultOne} isSummary={step === 2}  />}
 
-        {fatorSeguranca !== null && (
-          <div className="fator-seguranca">
-            
-          </div>
-        )}
+          {step === 3 && resultOne !== null && resistencia !== null && (
+            <div className="comparison">
+              <h2 style={{ fontSize: "2rem" }}>Compressão atual</h2>
+              <h2 style={{ color: resultOneColor.color, fontSize: "3.5rem", marginTop: "1rem"}}>{Math.round(resultOne)} <span style={{ color: resultOneColor.spanColor }}>kgf</span></h2>
+              <h2 style={{ fontSize: "2rem" }}>Mínimo de compressão </h2>
+              <h2 style={{ color: resistenciaColor.color, fontSize: "3.5rem",  marginTop: "1rem" }}>{Math.round(resistencia)} <span style={{ color: resistenciaColor.spanColor }}>kgf</span></h2>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+      {fatorSeguranca !== null && (
+        <Conclusion fatorSeguranca={fatorSeguranca} compressaoAtual={resultOne} minimoCompressao={resistencia} />
+      )}
+    </>
   );
 }

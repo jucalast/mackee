@@ -24,7 +24,7 @@ function Result({ title, value, isSummary = false, fatorSeguranca, resistencia, 
         <p className="value">
           {Math.round(value)} <span>kgf</span>
         </p> {/* Arredondar para o inteiro mais próximo */}
-        <div className="tooltip">
+        <div className="tooltip fixed">
           <p>
             Isso significa que a sua embalagem aguenta até no máximo {Math.round(value)} kgf até estourar. O <strong>fator de segurança</strong> dirá, quanto Kgf no mínimo, sua embalagem deve ter.
           </p>

@@ -89,23 +89,18 @@ export default function FormStepOne({ onCalculate }: Props) {
     <form onSubmit={handleSubmit} className="form-container">
       <h1>Carga de Colapso Teste de McKee</h1>
       <div className="label-select-container">
-        <label htmlFor="material">Material </label>
         <select id="material" value={material} onChange={(e) => setMaterial(e.target.value)} required>
-          <option value="">Selecione</option>
+          <option value="" disabled>Material</option>
           <option value="B">B</option>
           <option value="C">C</option>
           <option value="BC">BC</option>
           <option value="E">E</option>
         </select>
-      </div>
-
-      <div className="label-select-container">
-        <label htmlFor="coluna">Coluna </label>
         <select id="coluna" value={coluna} onChange={(e) => setColuna(e.target.value)} required>
+          <option value="" disabled>Coluna</option>
           {material === "B" && [3.5, 4, 5, 5.5, 6, 7].map((opcao, index) => (
             <option key={index} value={opcao}>{opcao}</option>
           ))}
-          <option value="">Selecione</option>
           {material === "C" && [3.3, 3.8, 4.8, 5.3, 6, 7.5].map((opcao, index) => (
             <option key={index} value={opcao}>{opcao}</option>
           ))}
@@ -119,23 +114,18 @@ export default function FormStepOne({ onCalculate }: Props) {
       </div>
 
       <div className="label-select-container">
-        <label htmlFor="comprimento">Compr. </label>
-        <input type="number" id="comprimento" value={comprimento} onChange={(e) => setComprimento(e.target.value)} required />
+        <input type="number" id="comprimento" value={comprimento} onChange={(e) => setComprimento(e.target.value)} placeholder="Comprimento" required />
+        <input type="number" id="largura" value={largura} onChange={(e) => setLargura(e.target.value)} placeholder="Largura" required />
       </div>
 
       <div className="label-select-container">
-        <label htmlFor="largura">Largura </label>
-        <input type="number" id="largura" value={largura} onChange={(e) => setLargura(e.target.value)} required />
+        <input type="number" id="altura" value={altura} onChange={(e) => setAltura(e.target.value)} placeholder="Altura" required />
+        <input type="hidden" id="espessura" value={espessura} step="0.01" readOnly required />
       </div>
 
-      <div className="label-select-container">
-        <label htmlFor="altura">Altura </label>
-        <input type="number" id="altura" value={altura} onChange={(e) => setAltura(e.target.value)} required />
+      <div className="button-container">
+        <button type="submit">Calcular</button>
       </div>
-
-      <input type="hidden" id="espessura" value={espessura} step="0.01" readOnly required />
-
-      <button type="submit">Calcular</button>
     </form>
   );
 }

@@ -7,8 +7,8 @@ body {
     align-items: center;
     height: 100vh;
     background-image: linear-gradient(to right, #d3d3d3 3px, transparent 3px); /* Alterar para linhas verticais */
-    background-size: 300px 300px; /* Aumentar o espaçamento */
-    overflow-y: hidden;
+    background-size: 30rem 30rem; /* Aumentar o espaçamento */
+    
 }
 
 .main-container {
@@ -19,12 +19,13 @@ body {
     width: 100%;
     max-width: 1600px;
     padding: 20px;
-    gap: 100px; /* Espaçamento entre os elementos */
+    gap: 10rem; /* Espaçamento entre os elementos */
+    height: 65vh !important; /* Altura menor */
 }
 
 .form-section {
     display: flex;
-    gap: 50px;
+    gap: 5rem;
     flex-direction: row;
     align-items: center;
     position: relative;
@@ -48,17 +49,21 @@ body {
 
 .result-container {
     flex-shrink: 0;
-    width: 300px;
+    width: 30rem;
     height: 100%;
     align-self: flex-start; /* Adicione esta linha para alinhar ao topo */
 }
 
 .container, .form-container {
-    max-width: 450px;
+    max-width: 25rem;
     width: 100%;
-    padding: 3rem;
+    height: 60vh;
+    padding: 2rem;
     background: #fff;
     transition: transform 0.5s ease, z-index 0.5s ease, opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Garante que o botão fique na parte inferior */
 }
 
 .container {
@@ -90,10 +95,10 @@ body {
 label, select, input, button {
     display: block;
     width: 100%;
-    margin: 10px 0;
     padding: 8px;
     border: none;
     font-family: 'Poppins', sans-serif;
+    border-radius: 1rem; /* Diminui o border-radius */
 }
 
 select, input {
@@ -105,15 +110,20 @@ select, input {
     background-position: right 30px center;
     background-size: 16px 16px;
     outline: none;
-    width: 50%; /* Certifique-se de que todos os selects tenham o mesmo tamanho */
+    width: calc(50% - 0.5rem); /* Ajusta a largura para dois por linha */
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura total */
 }
 
 .label-select-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 1rem;
+    padding: 1rem;
+    height: 3rem;
     justify-content: space-between;
+    flex-wrap: wrap; /* Permite que os elementos quebrem linha */
+    
 }
 
 .label-select-container label {
@@ -125,11 +135,10 @@ button {
     background: #9affbf; /* Novo background */
     color: #287a47; /* Nova cor */
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 2rem;
     transition: background-color 0.3s ease;
     font-family: 'Gatwick', sans-serif;
-    font-size: 2rem;
-    height: 5rem;
+    height: 4rem;
 }
 
 button:hover {
@@ -137,8 +146,8 @@ button:hover {
 }
 
 .resultado {
-    margin-top: 20px;
-    padding: 10px;
+    margin-top: 2rem;
+    padding: 1rem;
     background: #e9ecef;
     text-align: center;
     font-size: 1.25rem;
@@ -157,13 +166,14 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     margin-top: 0;
 }
 
 h2 {
     font-size: 4rem;
     color: #5b5b5b;
+    margin: 0;
 }
 
 h3 {
@@ -178,7 +188,7 @@ p {
 }
 
 label, input, select {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .section {
@@ -205,6 +215,7 @@ img {
 /* Transições de Opacidade */
 .form-container {
     width: 100%;
+    max-height: 100%;
     transition: opacity 0.5s ease;
 }
 
@@ -226,6 +237,71 @@ img {
     .form-container, .container {
         max-width: 100%;
     }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 2rem; /* Adiciona padding maior no body */
+    }
+
+    .main-container {
+        padding: 10px;
+        gap: 5rem; /* Ajusta o espaçamento para telas menores */
+        justify-content: flex-start; /* Alinha o conteúdo ao topo */
+        height: 100vh !important; /* Ajusta a altura para auto */
+        margin-top:25rem ;
+    }
+
+    .form-container, .container {
+        margin-top: 2rem; /* Adiciona margem superior para empurrar o formulário para baixo */
+        height: auto; /* Ajusta a altura para auto */
+        padding: 1rem; /* Ajusta o padding */
+        max-width: 17rem; /* Ajusta a largura máxima para telas menores */
+        margin: 0 auto 0 0; /* Alinha o formulário mais para a esquerda */
+    }
+
+    .label-select-container {
+        flex-direction: column; /* Alinha os elementos em coluna */
+        height: auto; /* Ajusta a altura */
+    }
+
+    select, input {
+        width: 100%; /* Ajusta a largura para 100% */
+    }
+
+    .result-container {
+        width: 80%; /* Ajusta a largura para 100% */
+    }
+
+    .button-container {
+        margin-top: 1rem; /* Ajusta a margem superior */
+    }
+
+    .result-box p {
+        font-size: 0.5rem; /* Ajusta o tamanho da fonte */
+    }
+    h2 {
+        font-size: 2.5rem !important; /* Ajusta o tamanho da fonte */
+    }
+    p {
+        width: 70vw; /* Ajusta a largura para 80% */
+    }
+
+    .result-box .value {
+        font-size: 3.5rem !important; /* Ajusta o tamanho da fonte */
+        margin: 1.5rem 0 !important;
+    }
+
+    .result-box .tooltip p {
+        font-size: 1.5rem; /* Ajusta o tamanho da fonte */
+        
+    }
+
+    .form-section {
+        right: 1rem;
+    }
+
+
 }
 
 .result-box {
@@ -250,22 +326,24 @@ img {
     color: #a8a8a8;
 }
 
-.result-box .tooltip {
-    position: absolute;
-    top: 83%;
-    left: 70%;
-    transform: translateY(-50%);
+.result-box .tooltip p {
+    position: relative; /* Altere para relativo */
+    top: auto; /* Remova a posição superior */
+    left: auto; /* Remova a posição esquerda */
+    transform: none; /* Remova a transformação */
     background: #d9d6ff;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 20px;
     border-radius: 8px;
-    width: 350px;
+    width: 100%; /* Ajuste a largura para 100% do container */
     font-family: 'Poppins' !important;
     border: solid 1px #5348e9;
+    margin-top: 1rem; /* Adicione margem superior para espaçamento */
+    color: #5348e9; /* Ajuste a cor do conteúdo para ser igual à cor da borda */
 }
 
-.result-box .tooltip p {
-    font-family: 'Poppins';
-    font-size: 1rem;
-    color: #5348e9;
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto; /* Empurra o botão para a parte inferior */
 }
